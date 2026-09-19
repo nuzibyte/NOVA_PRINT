@@ -4,839 +4,976 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NOVA PRINT | Custom 3D Printing</title>
+<title>NOVA PRINT</title>
 
 <style>
+*{box-sizing:border-box}
 
-* {
-    box-sizing: border-box;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f4f5;
+  color:#18181b;
 }
 
-html {
-    scroll-behavior: smooth;
+header{
+  background:#18181b;
+  color:white;
+  padding:28px 16px;
+  text-align:center;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #090b10;
-    color: #ffffff;
+header h1{
+  margin:0;
+  font-size:34px;
 }
 
-/* =========================
-   HEADER
-========================= */
-
-header {
-    background: linear-gradient(
-        135deg,
-        #171b27,
-        #080a0f
-    );
-
-    padding: 45px 20px;
-    text-align: center;
-
-    border-bottom: 1px solid #292f3d;
+header p{
+  margin:8px 0 0;
+  color:#d4d4d8;
 }
 
-header h1 {
-    margin: 0;
-
-    font-size: 46px;
-
-    letter-spacing: 4px;
+main{
+  max-width:950px;
+  margin:auto;
+  padding:20px;
 }
 
-header p {
-    margin: 12px 0 0;
-
-    color: #aeb6c7;
-
-    font-size: 17px;
+.card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 3px 15px #0001;
 }
 
-/* =========================
-   MAIN
-========================= */
-
-.container {
-    width: 100%;
-    max-width: 1100px;
-
-    margin: auto;
-
-    padding: 25px 18px;
+h2{
+  margin-top:0;
 }
 
-/* =========================
-   CARDS
-========================= */
-
-.card {
-    background: #141821;
-
-    border: 1px solid #292f3d;
-
-    border-radius: 16px;
-
-    padding: 24px;
-
-    margin-bottom: 24px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.25);
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:15px;
 }
 
-.card h2 {
-    margin-top: 0;
-
-    font-size: 25px;
+.product{
+  border:1px solid #e4e4e7;
+  border-radius:15px;
+  padding:16px;
 }
 
-/* =========================
-   PRODUCTS
-========================= */
-
-.products {
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(245px, 1fr)
-        );
-
-    gap: 18px;
+.product h3{
+  margin:0 0 8px;
 }
 
-.product {
-    background: #0d1017;
-
-    border: 1px solid #292f3d;
-
-    border-radius: 14px;
-
-    padding: 18px;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s;
+.price{
+  font-size:20px;
+  font-weight:bold;
+  margin:10px 0;
 }
 
-.product:hover {
-    transform: translateY(-2px);
-
-    border-color: #4b5365;
+label{
+  display:block;
+  font-weight:bold;
+  margin:14px 0 6px;
 }
 
-.product h3 {
-    margin-top: 0;
-
-    font-size: 20px;
-}
-
-.price {
-    font-size: 22px;
-
-    font-weight: bold;
-
-    margin: 10px 0;
-}
-
-.inventory {
-    color: #929bad;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-
-    margin-bottom: 15px;
-}
-
-/* =========================
-   FORM ELEMENTS
-========================= */
-
-label {
-    display: block;
-
-    margin-top: 13px;
-    margin-bottom: 6px;
-
-    font-size: 14px;
-
-    font-weight: bold;
-}
-
-input,
 select,
-textarea {
-    width: 100%;
-
-    padding: 12px;
-
-    border-radius: 9px;
-
-    border: 1px solid #343b4b;
-
-    background: #080a0f;
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    outline: none;
+input,
+textarea,
+button{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #d4d4d8;
+  font-size:16px;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #68738a;
+textarea{
+  min-height:90px;
+  resize:vertical;
 }
 
-textarea {
-    min-height: 90px;
-
-    resize: vertical;
+button{
+  background:#18181b;
+  color:white;
+  border:0;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:12px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
-button {
-    border: none;
-
-    border-radius: 9px;
-
-    padding: 12px 18px;
-
-    margin-top: 12px;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    background: #ffffff;
-
-    color: #090b10;
-
-    transition:
-        opacity 0.2s,
-        transform 0.1s;
+button:hover{
+  opacity:.9;
 }
 
-button:hover {
-    opacity: 0.88;
+.drop{
+  border:2px dashed #a1a1aa;
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+  background:#fafafa;
 }
 
-button:active {
-    transform: scale(0.98);
+.drop.drag{
+  background:#e4e4e7;
 }
 
-.add-btn {
-    width: 100%;
+.drop strong{
+  display:block;
+  font-size:17px;
+  margin-bottom:6px;
 }
 
-.remove-btn {
-    background: #351820;
-
-    color: #ffb7c0;
-
-    width: 100%;
+.fileInput{
+  display:none;
 }
 
-.submit-btn {
-    width: 100%;
-
-    padding: 16px;
-
-    font-size: 17px;
-
-    margin-top: 20px;
+.fileName{
+  margin-top:8px;
+  font-size:13px;
+  color:#52525b;
+  word-break:break-word;
 }
 
-/* =========================
-   FILE UPLOAD
-========================= */
-
-.drop-zone {
-    border: 2px dashed #3b4354;
-
-    border-radius: 10px;
-
-    padding: 20px 10px;
-
-    text-align: center;
-
-    color: #9fa8ba;
-
-    cursor: pointer;
-
-    margin-top: 8px;
-
-    transition:
-        border-color 0.2s,
-        background 0.2s;
+.cart-item{
+  padding:12px 0;
+  border-bottom:1px solid #e4e4e7;
 }
 
-.drop-zone:hover {
-    border-color: #ffffff;
-
-    background: #11151e;
+.total{
+  font-size:21px;
+  font-weight:bold;
+  margin-top:15px;
 }
 
-.drop-zone input {
-    display: none;
+.note{
+  font-size:13px;
+  color:#71717a;
 }
 
-/* =========================
-   CART
-========================= */
-
-.cart-item {
-    background: #0b0e14;
-
-    border: 1px solid #292f3d;
-
-    border-radius: 12px;
-
-    padding: 16px;
-
-    margin-bottom: 12px;
+.empty{
+  color:#71717a;
 }
 
-.cart-item-title {
-    font-size: 18px;
-
-    font-weight: bold;
-
-    margin-bottom: 7px;
+.stock{
+  font-size:13px;
+  color:#71717a;
+  margin-top:5px;
 }
-
-.cart-details {
-    color: #aeb6c7;
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-.empty-cart {
-    text-align: center;
-
-    color: #7f8798;
-
-    padding: 20px;
-}
-
-.total {
-    text-align: right;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    margin-top: 18px;
-
-    padding-top: 15px;
-
-    border-top: 1px solid #292f3d;
-}
-
-/* =========================
-   PAYMENT DISCLAIMER
-========================= */
-
-.payment-warning {
-    background: #2b210f;
-
-    border: 1px solid #72551d;
-
-    border-radius: 13px;
-
-    padding: 18px;
-
-    margin-bottom: 22px;
-}
-
-.payment-warning h3 {
-    margin-top: 0;
-
-    margin-bottom: 8px;
-
-    color: #ffd56d;
-
-    font-size: 19px;
-}
-
-.payment-warning p {
-    margin: 0;
-
-    color: #eadbb5;
-
-    line-height: 1.6;
-}
-
-/* =========================
-   SMALL TEXT
-========================= */
-
-.small-note {
-    color: #858e9f;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
-/* =========================
-   STATUS
-========================= */
-
-.status {
-    display: none;
-
-    padding: 15px;
-
-    border-radius: 10px;
-
-    margin-top: 15px;
-
-    line-height: 1.5;
-}
-
-.status.success {
-    display: block;
-
-    background: #10251a;
-
-    border: 1px solid #2d7046;
-
-    color: #a8eab9;
-}
-
-.status.error {
-    display: block;
-
-    background: #2a1317;
-
-    border: 1px solid #74313b;
-
-    color: #ffb5be;
-}
-
-.status.loading {
-    display: block;
-
-    background: #151e2d;
-
-    border: 1px solid #3b4b65;
-
-    color: #b9c9e3;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    text-align: center;
-
-    color: #6f7788;
-
-    font-size: 13px;
-
-    padding: 35px 15px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    header {
-        padding: 35px 15px;
-    }
-
-    header h1 {
-        font-size: 34px;
-    }
-
-    header p {
-        font-size: 15px;
-    }
-
-    .container {
-        padding: 15px 10px;
-    }
-
-    .card {
-        padding: 17px;
-    }
-
-    .products {
-        grid-template-columns: 1fr;
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
-
-    <h1>NOVA PRINT</h1>
-
-    <p>
-        Custom 3D prints made your way.
-    </p>
-
+  <h1>NOVA PRINT</h1>
+  <p>Custom 3D prints made your way.</p>
 </header>
 
+<main>
+
+<form
+  id="orderForm"
+  action="https://formsubmit.co/cannonkidd.m@gmail.com"
+  method="POST"
+  enctype="multipart/form-data"
+>
+
+  <!-- EMAIL SETTINGS -->
+
+  <input type="hidden" name="_subject" value="🖨️ NEW NOVA PRINT ORDER">
+
+  <input type="hidden" name="_template" value="table">
+
+  <input type="hidden" name="_captcha" value="true">
+
+  <input
+    type="hidden"
+    name="_replyto"
+    id="replyTo"
+  >
+
+  <input
+    type="hidden"
+    name="Order_Number"
+    id="orderNumber"
+  >
+
+  <input
+    type="hidden"
+    name="Order_Summary"
+    id="orderSummary"
+  >
 
 
-<div class="container">
+  <!-- PRODUCTS -->
+
+  <section class="card">
+
+    <h2>🖨️ Choose a Print</h2>
+
+    <div class="products" id="products"></div>
+
+  </section>
 
 
-<!-- =========================
-     PRODUCTS
-========================= -->
+  <!-- CART -->
 
-<section class="card">
+  <section class="card">
 
-    <h2>🖨️ Choose Your Print</h2>
+    <h2>🛒 Your Cart</h2>
 
+    <div id="cart">
+      <p class="empty">Your cart is empty.</p>
+    </div>
 
-    <div class="products">
+    <div class="total" id="total"></div>
 
-
-        <!-- CUSTOM FIGURE -->
-
-        <div class="product">
-
-            <h3>Custom Figure</h3>
-
-            <div class="price">
-                $10.00
-            </div>
-
-            <div class="inventory">
-                Available colors:
-                Black, White, Red, Green, Purple
-            </div>
+  </section>
 
 
-            <label>
-                Color
-            </label>
+  <!-- CUSTOMER INFORMATION -->
 
-            <select id="color-0">
+  <section class="card">
 
-                <option value="Black">
-                    Black
-                </option>
+    <h2>📩 Send Your Order</h2>
 
-                <option value="White">
-                    White
-                </option>
+    <label for="customerName">
+      Your name
+    </label>
 
-                <option value="Red">
-                    Red
-                </option>
-
-                <option value="Green">
-                    Green
-                </option>
-
-                <option value="Purple">
-                    Purple
-                </option>
-
-            </select>
+    <input
+      id="customerName"
+      name="Customer_Name"
+      required
+      placeholder="Your name"
+    >
 
 
-            <label>
-                Finish
-            </label>
+    <label for="customerEmail">
+      Your email
+    </label>
 
-            <select id="finish-0">
-
-                <option value="Smooth">
-                    Smooth
-                </option>
-
-                <option value="Textured">
-                    Textured (+25%)
-                </option>
-
-            </select>
+    <input
+      id="customerEmail"
+      type="email"
+      name="Customer_Email"
+      required
+      placeholder="you@example.com"
+    >
 
 
-            <label>
-                How do you want it?
-            </label>
+    <label for="customerAddress">
+      Shipping / Delivery Address
+    </label>
 
-            <textarea
-                id="instructions-0"
-                placeholder="Tell us how you want your figure..."
-            ></textarea>
-
-
-            <label>
-                Quantity
-            </label>
-
-            <input
-                id="quantity-0"
-                type="number"
-                min="1"
-                value="1"
-            >
+    <textarea
+      id="customerAddress"
+      name="Shipping_Address"
+      required
+      placeholder="Street address, city, state, ZIP code"
+    ></textarea>
 
 
-            <label>
-                3D File
-            </label>
+    <button type="submit">
+      📩 Send Order
+    </button>
 
-            <div
-                class="drop-zone"
-                onclick="document.getElementById('file-0').click()"
-            >
+    <p class="note">
+      Your order information and uploaded 3D files will be sent to NOVA PRINT.
+    </p>
 
-                📁 Click to upload a 3D file
+  </section>
 
-                <input
-                    id="file-0"
-                    name="fi-file-figure"
-                    type="file"
-                    accept=".stl,.3mf,.obj,.step,.stp"
-                >
+</form>
 
-            </div>
-
-            <p
-                id="filename-0"
-                class="small-note"
-            >
-                No file selected.
-            </p>
+</main>
 
 
-            <button
-                type="button"
-                class="add-btn"
-                onclick="addToCart(0)"
-            >
-                Add to Cart
-            </button>
+<script>
+
+/* =====================================
+   NOVA PRINT INVENTORY
+   ===================================== */
+
+const inventory = {
+
+  colors: {
+
+    "Black":20,
+    "White":15,
+    "Red":8,
+    "Blue":0,
+    "Green":5,
+    "Purple":3
+
+  },
+
+  finishes: {
+
+    "Smooth":1.00,
+    "Textured":1.25
+
+  },
+
+  products: [
+
+    {
+      name:"Custom Figure",
+      price:10
+    },
+
+    {
+      name:"Keychain",
+      price:4
+    },
+
+    {
+      name:"Small Decoration",
+      price:7
+    },
+
+    {
+      name:"Custom Part",
+      price:12
+    }
+
+  ]
+
+};
+
+
+let cart=[];
+
+
+/* =====================================
+   CREATE ORDER NUMBER
+   ===================================== */
+
+function createOrderNumber(){
+
+  const random =
+    Math.floor(100000 + Math.random()*900000);
+
+  return "NP-" + random;
+
+}
+
+
+/* =====================================
+   DISPLAY PRODUCTS
+   ===================================== */
+
+function renderProducts(){
+
+  const box =
+    document.getElementById("products");
+
+  box.innerHTML="";
+
+
+  inventory.products.forEach((p,i)=>{
+
+    const colors =
+      Object.entries(inventory.colors)
+
+      .filter(([name,qty])=>qty>0)
+
+      .map(([name,qty])=>
+
+        `<option value="${name}">
+          ${name} (${qty} available)
+        </option>`
+
+      )
+
+      .join("");
+
+
+    box.innerHTML += `
+
+      <div class="product">
+
+        <h3>
+          ${p.name}
+        </h3>
+
+        <div class="price">
+          $${p.price.toFixed(2)}
+        </div>
+
+
+        <label>
+          Color
+        </label>
+
+        <select id="color${i}">
+          ${colors || '<option>No colors in stock</option>'}
+        </select>
+
+
+        <label>
+          Finish
+        </label>
+
+        <select id="finish${i}">
+
+          <option value="Smooth">
+            Smooth
+          </option>
+
+          <option value="Textured">
+            Textured (+25%)
+          </option>
+
+        </select>
+
+
+        <label>
+          How do you want it?
+        </label>
+
+        <textarea
+          id="desc${i}"
+          placeholder="Tell us exactly how you want this item made."
+        ></textarea>
+
+
+        <label>
+          Quantity
+        </label>
+
+        <input
+          id="qty${i}"
+          type="number"
+          min="1"
+          value="1"
+        >
+
+
+        <label>
+          3D File (optional)
+        </label>
+
+        <div
+          class="drop"
+          id="drop${i}"
+        >
+
+          <strong>
+            📁 Drop your file here
+          </strong>
+
+          <span>
+            or tap to choose a file
+          </span>
+
+          <div
+            class="fileName"
+            id="fileName${i}"
+          >
+            No file selected
+          </div>
+
+          <input
+            class="fileInput"
+            id="file${i}"
+            type="file"
+            name="3D_File_${i+1}"
+            accept=".stl,.3mf,.obj,.step,.stp"
+          >
 
         </div>
 
 
+        <button
+          type="button"
+          onclick="addToCart(${i})"
+        >
+          Add to Cart
+        </button>
 
-        <!-- KEYCHAIN -->
+      </div>
 
-        <div class="product">
+    `;
 
-            <h3>Keychain</h3>
-
-            <div class="price">
-                $4.00
-            </div>
-
-            <div class="inventory">
-                Available colors:
-                Black, White, Red, Green, Purple
-            </div>
+  });
 
 
-            <label>
-                Color
-            </label>
+  inventory.products.forEach((p,i)=>{
+    setupDrop(i);
+  });
 
-            <select id="color-1">
-
-                <option value="Black">
-                    Black
-                </option>
-
-                <option value="White">
-                    White
-                </option>
-
-                <option value="Red">
-                    Red
-                </option>
-
-                <option value="Green">
-                    Green
-                </option>
-
-                <option value="Purple">
-                    Purple
-                </option>
-
-            </select>
+}
 
 
-            <label>
-                Finish
-            </label>
+/* =====================================
+   FILE UPLOAD
+   ===================================== */
 
-            <select id="finish-1">
+function setupDrop(i){
 
-                <option value="Smooth">
-                    Smooth
-                </option>
+  const drop =
+    document.getElementById("drop"+i);
 
-                <option value="Textured">
-                    Textured (+25%)
-                </option>
-
-            </select>
+  const input =
+    document.getElementById("file"+i);
 
 
-            <label>
-                How do you want it?
-            </label>
-
-            <textarea
-                id="instructions-1"
-                placeholder="Tell us how you want your keychain..."
-            ></textarea>
+  drop.addEventListener(
+    "click",
+    ()=>{
+      input.click();
+    }
+  );
 
 
-            <label>
-                Quantity
-            </label>
-
-            <input
-                id="quantity-1"
-                type="number"
-                min="1"
-                value="1"
-            >
+  drop.addEventListener(
+    "dragover",
+    e=>{
+      e.preventDefault();
+      drop.classList.add("drag");
+    }
+  );
 
 
-            <label>
-                3D File
-            </label>
-
-            <div
-                class="drop-zone"
-                onclick="document.getElementById('file-1').click()"
-            >
-
-                📁 Click to upload a 3D file
-
-                <input
-                    id="file-1"
-                    name="fi-file-keychain"
-                    type="file"
-                    accept=".stl,.3mf,.obj,.step,.stp"
-                >
-
-            </div>
-
-            <p
-                id="filename-1"
-                class="small-note"
-            >
-                No file selected.
-            </p>
+  drop.addEventListener(
+    "dragleave",
+    ()=>{
+      drop.classList.remove("drag");
+    }
+  );
 
 
-            <button
-                type="button"
-                class="add-btn"
-                onclick="addToCart(1)"
-            >
-                Add to Cart
-            </button>
+  drop.addEventListener(
+    "drop",
+    e=>{
+
+      e.preventDefault();
+
+      drop.classList.remove("drag");
+
+      if(e.dataTransfer.files.length){
+
+        input.files =
+          e.dataTransfer.files;
+
+        showFile(i);
+
+      }
+
+    }
+  );
+
+
+  input.addEventListener(
+    "change",
+    ()=>{
+      showFile(i);
+    }
+  );
+
+}
+
+
+/* =====================================
+   SHOW FILE NAME
+   ===================================== */
+
+function showFile(i){
+
+  const file =
+    document.getElementById("file"+i).files[0];
+
+
+  document.getElementById(
+    "fileName"+i
+  ).textContent =
+
+    file
+
+      ? `${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`
+
+      : "No file selected";
+
+}
+
+
+/* =====================================
+   ADD TO CART
+   ===================================== */
+
+function addToCart(i){
+
+  const p =
+    inventory.products[i];
+
+
+  const color =
+    document.getElementById(
+      "color"+i
+    ).value;
+
+
+  const finish =
+    document.getElementById(
+      "finish"+i
+    ).value;
+
+
+  const description =
+    document.getElementById(
+      "desc"+i
+    ).value.trim();
+
+
+  const qty =
+    Math.max(
+      1,
+      parseInt(
+        document.getElementById("qty"+i).value
+      ) || 1
+    );
+
+
+  const file =
+    document.getElementById(
+      "file"+i
+    ).files[0] || null;
+
+
+  if(
+    !color ||
+    inventory.colors[color] <= 0
+  ){
+
+    alert(
+      "That color is out of stock."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    qty >
+    inventory.colors[color]
+  ){
+
+    alert(
+      `Only ${inventory.colors[color]} of ${color} are in stock.`
+    );
+
+    return;
+
+  }
+
+
+  if(!description){
+
+    alert(
+      "Please describe how you want this item made."
+    );
+
+    document.getElementById(
+      "desc"+i
+    ).focus();
+
+    return;
+
+  }
+
+
+  if(
+    file &&
+    file.size >
+    10*1024*1024
+  ){
+
+    alert(
+      "That file is over 10 MB. Please choose a smaller file."
+    );
+
+    return;
+
+  }
+
+
+  cart.push({
+
+    productIndex:i,
+
+    name:p.name,
+
+    color,
+
+    finish,
+
+    description,
+
+    qty,
+
+    price:
+      p.price *
+      inventory.finishes[finish],
+
+    fileName:
+      file ? file.name : ""
+
+  });
+
+
+  renderCart();
+
+}
+
+
+/* =====================================
+   ESCAPE HTML
+   ===================================== */
+
+function escapeHtml(s){
+
+  return s.replace(
+    /[&<>"']/g,
+    c=>({
+
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+
+    }[c])
+  );
+
+}
+
+
+/* =====================================
+   CART DISPLAY
+   ===================================== */
+
+function renderCart(){
+
+  const box =
+    document.getElementById("cart");
+
+  const totalEl =
+    document.getElementById("total");
+
+
+  if(!cart.length){
+
+    box.innerHTML =
+      '<p class="empty">Your cart is empty.</p>';
+
+    totalEl.textContent="";
+
+    return;
+
+  }
+
+
+  let total=0;
+
+
+  box.innerHTML =
+
+    cart.map((x,i)=>{
+
+      const line =
+        x.price*x.qty;
+
+      total += line;
+
+
+      return `
+
+        <div class="cart-item">
+
+          <b>
+            ${escapeHtml(x.name)}
+          </b>
+
+          —
+          ${escapeHtml(x.color)},
+          ${escapeHtml(x.finish)}
+          × ${x.qty}
+
+          <br>
+
+          📝
+          ${escapeHtml(x.description)}
+
+          ${
+            x.fileName
+
+              ? `<br>📎 ${escapeHtml(x.fileName)}`
+
+              : ""
+          }
+
+          <br>
+
+          💵
+          $${line.toFixed(2)}
+
+          <button
+            type="button"
+            onclick="removeItem(${i})"
+          >
+            Remove
+          </button>
 
         </div>
 
+      `;
+
+    }).join("");
 
 
-        <!-- DECORATION -->
+  totalEl.textContent =
+    "Total: $" + total.toFixed(2);
 
-        <div class="product">
-
-            <h3>Small Decoration</h3>
-
-            <div class="price">
-                $7.00
-            </div>
-
-            <div class="inventory">
-                Available colors:
-                Black, White, Red, Green, Purple
-            </div>
+}
 
 
-            <label>
-                Color
-            </label>
+/* =====================================
+   REMOVE CART ITEM
+   ===================================== */
 
-            <select id="color-2">
+function removeItem(i){
 
-                <option value="Black">
-                    Black
-                </option>
+  cart.splice(i,1);
 
-                <option value="White">
-                    White
-                </option>
+  renderCart();
 
-                <option value="Red">
-                    Red
-                </option>
-
-                <option value="Green">
-                    Green
-                </option>
-
-                <option value="Purple">
-                    Purple
-                </option>
-
-            </select>
+}
 
 
-            <label>
-                Finish
-            </label>
+/* =====================================
+   SUBMIT ORDER
+   ===================================== */
 
-            <select id="finish-2">
+document
+.getElementById("orderForm")
+.addEventListener(
+  "submit",
+  function(e){
 
-                <option value="Smooth">
-                    Smooth
-                </option>
+    if(!cart.length){
 
-                <option value="Textured">
-                    Textured (+25%)
-                </option>
+      e.preventDefault();
 
-            </select>
+      alert(
+        "Please add at least one item to your cart."
+      );
+
+      return;
+
+    }
 
 
-            <label>
-                How do you want it?
-            </label>
+    /* EMAIL REPLY ADDRESS */
 
-            <textarea
-                id="instructions-2"
-                placeholder
+    document.getElementById(
+      "replyTo"
+    ).value =
+
+      document.getElementById(
+        "customerEmail"
+      ).value;
+
+
+    /* ORDER NUMBER */
+
+    const orderNumber =
+      createOrderNumber();
+
+
+    document.getElementById(
+      "orderNumber"
+    ).value =
+      orderNumber;
+
+
+    /* BUILD ORDER SUMMARY */
+
+    let summary =
+      `NOVA PRINT ORDER\n`;
+
+    summary +=
+      `Order Number: ${orderNumber}\n\n`;
+
+
+    cart.forEach((x,n)=>{
+
+      summary +=
+        `ITEM ${n+1}\n`;
+
+      summary +=
+        `Product: ${x.name}\n`;
+
+      summary +=
+        `Color: ${x.color}\n`;
+
+      summary +=
+        `Finish: ${x.finish}\n`;
+
+      summary +=
+        `Quantity: ${x.qty}\n`;
+
+      summary +=
+        `How they want it: ${x.description}\n`;
+
+      summary +=
+        `3D File: ${
+          x.fileName || "No file"
+        }\n`;
+
+      summary +=
+        `Price: $${(
+          x.price*x.qty
+        ).toFixed(2)}\n\n`;
+
+    });
+
+
+    const total =
+      cart.reduce(
+        (sum,x)=>
+          sum + x.price*x.qty,
+        0
+      );
+
+
+    summary +=
+      `TOTAL: $${total.toFixed(2)}\n`;
+
+
+    document.getElementById(
+      "orderSummary"
+    ).value =
+      summary;
+
+  }
+);
+
+
+/* =====================================
+   START WEBSITE
+   ===================================== */
+
+renderProducts();
+
+renderCart();
+
+</script>
+
+</body>
+</html>
