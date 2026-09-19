@@ -4,91 +4,168 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NOVA PRINT - Custom 3D Printing</title>
+<title>NOVA PRINT | Custom 3D Printing</title>
 
 <style>
+
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #0b0d12;
+    background: #090b10;
     color: #ffffff;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 header {
-    background: linear-gradient(135deg, #151923, #090b10);
-    padding: 35px 20px;
+    background: linear-gradient(
+        135deg,
+        #171b27,
+        #080a0f
+    );
+
+    padding: 45px 20px;
     text-align: center;
-    border-bottom: 2px solid #252a38;
+
+    border-bottom: 1px solid #292f3d;
 }
 
 header h1 {
     margin: 0;
-    font-size: 42px;
-    letter-spacing: 3px;
+
+    font-size: 46px;
+
+    letter-spacing: 4px;
 }
 
 header p {
-    margin-top: 10px;
-    color: #aeb6c8;
+    margin: 12px 0 0;
+
+    color: #aeb6c7;
+
     font-size: 17px;
 }
 
+/* =========================
+   MAIN
+========================= */
+
 .container {
+    width: 100%;
     max-width: 1100px;
+
     margin: auto;
-    padding: 20px;
+
+    padding: 25px 18px;
 }
 
+/* =========================
+   CARDS
+========================= */
+
 .card {
-    background: #141822;
-    border: 1px solid #282e3d;
+    background: #141821;
+
+    border: 1px solid #292f3d;
+
     border-radius: 16px;
-    padding: 22px;
-    margin-bottom: 22px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+
+    padding: 24px;
+
+    margin-bottom: 24px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
 }
 
 .card h2 {
     margin-top: 0;
+
+    font-size: 25px;
 }
+
+/* =========================
+   PRODUCTS
+========================= */
 
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(245px, 1fr)
+        );
+
     gap: 18px;
 }
 
 .product {
-    background: #0f121a;
-    border: 1px solid #292f3e;
+    background: #0d1017;
+
+    border: 1px solid #292f3d;
+
     border-radius: 14px;
+
     padding: 18px;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s;
+}
+
+.product:hover {
+    transform: translateY(-2px);
+
+    border-color: #4b5365;
 }
 
 .product h3 {
     margin-top: 0;
+
+    font-size: 20px;
 }
 
 .price {
-    font-size: 20px;
+    font-size: 22px;
+
     font-weight: bold;
+
     margin: 10px 0;
 }
 
 .inventory {
-    color: #9fa8ba;
-    font-size: 14px;
-    margin-bottom: 12px;
+    color: #929bad;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 15px;
 }
+
+/* =========================
+   FORM ELEMENTS
+========================= */
 
 label {
     display: block;
-    margin-top: 12px;
+
+    margin-top: 13px;
     margin-bottom: 6px;
+
+    font-size: 14px;
+
     font-weight: bold;
 }
 
@@ -96,19 +173,670 @@ input,
 select,
 textarea {
     width: 100%;
+
     padding: 12px;
+
     border-radius: 9px;
-    border: 1px solid #343b4d;
-    background: #090c12;
-    color: white;
+
+    border: 1px solid #343b4b;
+
+    background: #080a0f;
+
+    color: #ffffff;
+
     font-size: 15px;
+
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #68738a;
 }
 
 textarea {
-    resize: vertical;
     min-height: 90px;
+
+    resize: vertical;
 }
+
+/* =========================
+   BUTTONS
+========================= */
 
 button {
     border: none;
-   
+
+    border-radius: 9px;
+
+    padding: 12px 18px;
+
+    margin-top: 12px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    background: #ffffff;
+
+    color: #090b10;
+
+    transition:
+        opacity 0.2s,
+        transform 0.1s;
+}
+
+button:hover {
+    opacity: 0.88;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.add-btn {
+    width: 100%;
+}
+
+.remove-btn {
+    background: #351820;
+
+    color: #ffb7c0;
+
+    width: 100%;
+}
+
+.submit-btn {
+    width: 100%;
+
+    padding: 16px;
+
+    font-size: 17px;
+
+    margin-top: 20px;
+}
+
+/* =========================
+   FILE UPLOAD
+========================= */
+
+.drop-zone {
+    border: 2px dashed #3b4354;
+
+    border-radius: 10px;
+
+    padding: 20px 10px;
+
+    text-align: center;
+
+    color: #9fa8ba;
+
+    cursor: pointer;
+
+    margin-top: 8px;
+
+    transition:
+        border-color 0.2s,
+        background 0.2s;
+}
+
+.drop-zone:hover {
+    border-color: #ffffff;
+
+    background: #11151e;
+}
+
+.drop-zone input {
+    display: none;
+}
+
+/* =========================
+   CART
+========================= */
+
+.cart-item {
+    background: #0b0e14;
+
+    border: 1px solid #292f3d;
+
+    border-radius: 12px;
+
+    padding: 16px;
+
+    margin-bottom: 12px;
+}
+
+.cart-item-title {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+.cart-details {
+    color: #aeb6c7;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.empty-cart {
+    text-align: center;
+
+    color: #7f8798;
+
+    padding: 20px;
+}
+
+.total {
+    text-align: right;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin-top: 18px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #292f3d;
+}
+
+/* =========================
+   PAYMENT DISCLAIMER
+========================= */
+
+.payment-warning {
+    background: #2b210f;
+
+    border: 1px solid #72551d;
+
+    border-radius: 13px;
+
+    padding: 18px;
+
+    margin-bottom: 22px;
+}
+
+.payment-warning h3 {
+    margin-top: 0;
+
+    margin-bottom: 8px;
+
+    color: #ffd56d;
+
+    font-size: 19px;
+}
+
+.payment-warning p {
+    margin: 0;
+
+    color: #eadbb5;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   SMALL TEXT
+========================= */
+
+.small-note {
+    color: #858e9f;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    display: none;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    margin-top: 15px;
+
+    line-height: 1.5;
+}
+
+.status.success {
+    display: block;
+
+    background: #10251a;
+
+    border: 1px solid #2d7046;
+
+    color: #a8eab9;
+}
+
+.status.error {
+    display: block;
+
+    background: #2a1317;
+
+    border: 1px solid #74313b;
+
+    color: #ffb5be;
+}
+
+.status.loading {
+    display: block;
+
+    background: #151e2d;
+
+    border: 1px solid #3b4b65;
+
+    color: #b9c9e3;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    color: #6f7788;
+
+    font-size: 13px;
+
+    padding: 35px 15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 35px 15px;
+    }
+
+    header h1 {
+        font-size: 34px;
+    }
+
+    header p {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 15px 10px;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <h1>NOVA PRINT</h1>
+
+    <p>
+        Custom 3D prints made your way.
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section class="card">
+
+    <h2>🖨️ Choose Your Print</h2>
+
+
+    <div class="products">
+
+
+        <!-- CUSTOM FIGURE -->
+
+        <div class="product">
+
+            <h3>Custom Figure</h3>
+
+            <div class="price">
+                $10.00
+            </div>
+
+            <div class="inventory">
+                Available colors:
+                Black, White, Red, Green, Purple
+            </div>
+
+
+            <label>
+                Color
+            </label>
+
+            <select id="color-0">
+
+                <option value="Black">
+                    Black
+                </option>
+
+                <option value="White">
+                    White
+                </option>
+
+                <option value="Red">
+                    Red
+                </option>
+
+                <option value="Green">
+                    Green
+                </option>
+
+                <option value="Purple">
+                    Purple
+                </option>
+
+            </select>
+
+
+            <label>
+                Finish
+            </label>
+
+            <select id="finish-0">
+
+                <option value="Smooth">
+                    Smooth
+                </option>
+
+                <option value="Textured">
+                    Textured (+25%)
+                </option>
+
+            </select>
+
+
+            <label>
+                How do you want it?
+            </label>
+
+            <textarea
+                id="instructions-0"
+                placeholder="Tell us how you want your figure..."
+            ></textarea>
+
+
+            <label>
+                Quantity
+            </label>
+
+            <input
+                id="quantity-0"
+                type="number"
+                min="1"
+                value="1"
+            >
+
+
+            <label>
+                3D File
+            </label>
+
+            <div
+                class="drop-zone"
+                onclick="document.getElementById('file-0').click()"
+            >
+
+                📁 Click to upload a 3D file
+
+                <input
+                    id="file-0"
+                    name="fi-file-figure"
+                    type="file"
+                    accept=".stl,.3mf,.obj,.step,.stp"
+                >
+
+            </div>
+
+            <p
+                id="filename-0"
+                class="small-note"
+            >
+                No file selected.
+            </p>
+
+
+            <button
+                type="button"
+                class="add-btn"
+                onclick="addToCart(0)"
+            >
+                Add to Cart
+            </button>
+
+        </div>
+
+
+
+        <!-- KEYCHAIN -->
+
+        <div class="product">
+
+            <h3>Keychain</h3>
+
+            <div class="price">
+                $4.00
+            </div>
+
+            <div class="inventory">
+                Available colors:
+                Black, White, Red, Green, Purple
+            </div>
+
+
+            <label>
+                Color
+            </label>
+
+            <select id="color-1">
+
+                <option value="Black">
+                    Black
+                </option>
+
+                <option value="White">
+                    White
+                </option>
+
+                <option value="Red">
+                    Red
+                </option>
+
+                <option value="Green">
+                    Green
+                </option>
+
+                <option value="Purple">
+                    Purple
+                </option>
+
+            </select>
+
+
+            <label>
+                Finish
+            </label>
+
+            <select id="finish-1">
+
+                <option value="Smooth">
+                    Smooth
+                </option>
+
+                <option value="Textured">
+                    Textured (+25%)
+                </option>
+
+            </select>
+
+
+            <label>
+                How do you want it?
+            </label>
+
+            <textarea
+                id="instructions-1"
+                placeholder="Tell us how you want your keychain..."
+            ></textarea>
+
+
+            <label>
+                Quantity
+            </label>
+
+            <input
+                id="quantity-1"
+                type="number"
+                min="1"
+                value="1"
+            >
+
+
+            <label>
+                3D File
+            </label>
+
+            <div
+                class="drop-zone"
+                onclick="document.getElementById('file-1').click()"
+            >
+
+                📁 Click to upload a 3D file
+
+                <input
+                    id="file-1"
+                    name="fi-file-keychain"
+                    type="file"
+                    accept=".stl,.3mf,.obj,.step,.stp"
+                >
+
+            </div>
+
+            <p
+                id="filename-1"
+                class="small-note"
+            >
+                No file selected.
+            </p>
+
+
+            <button
+                type="button"
+                class="add-btn"
+                onclick="addToCart(1)"
+            >
+                Add to Cart
+            </button>
+
+        </div>
+
+
+
+        <!-- DECORATION -->
+
+        <div class="product">
+
+            <h3>Small Decoration</h3>
+
+            <div class="price">
+                $7.00
+            </div>
+
+            <div class="inventory">
+                Available colors:
+                Black, White, Red, Green, Purple
+            </div>
+
+
+            <label>
+                Color
+            </label>
+
+            <select id="color-2">
+
+                <option value="Black">
+                    Black
+                </option>
+
+                <option value="White">
+                    White
+                </option>
+
+                <option value="Red">
+                    Red
+                </option>
+
+                <option value="Green">
+                    Green
+                </option>
+
+                <option value="Purple">
+                    Purple
+                </option>
+
+            </select>
+
+
+            <label>
+                Finish
+            </label>
+
+            <select id="finish-2">
+
+                <option value="Smooth">
+                    Smooth
+                </option>
+
+                <option value="Textured">
+                    Textured (+25%)
+                </option>
+
+            </select>
+
+
+            <label>
+                How do you want it?
+            </label>
+
+            <textarea
+                id="instructions-2"
+                placeholder
