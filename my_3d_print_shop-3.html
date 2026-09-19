@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My 3D Print Shop</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f4f5;color:#18181b}
+header{background:#18181b;color:white;padding:22px 16px;text-align:center}
+header h1{margin:0;font-size:30px}header p{margin:7px 0 0;color:#d4d4d8}
+main{max-width:900px;margin:auto;padding:20px}
+.card{background:white;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 3px 15px #0001}
+h2{margin-top:0}.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.product{border:1px solid #e4e4e7;border-radius:15px;padding:16px}
+.product h3{margin:0 0 8px}.price{font-size:20px;font-weight:bold;margin:10px 0}
+label{display:block;font-weight:bold;margin:14px 0 6px}select,input,button{width:100%;padding:12px;border-radius:10px;border:1px solid #d4d4d8;font-size:16px}
+button{background:#18181b;color:white;border:0;font-weight:bold;cursor:pointer;margin-top:12px}
+button:hover{opacity:.9}.stock{font-size:13px;color:#52525b}.cart-item{padding:10px 0;border-bottom:1px solid #e4e4e7}
+.total{font-size:21px;font-weight:bold;margin-top:15px}.note{font-size:13px;color:#71717a}
+.empty{color:#71717a}
+</style>
+</head>
+<body>
+<header>
+  <h1>My 3D Print Shop</h1>
+  <p>Custom 3D prints made your way.</p>
+</header>
+
+<main>
+<section class="card">
+  <h2>🖨️ Choose a Print</h2>
+  <div class="products" id="products"></div>
+</section>
+
+<section class="card">
+  <h2>🛒 Your Cart</h2>
+  <div id="cart"><p class="empty">Your cart is empty.</p></div>
+  <div class="total" id="total"></div>
+  <button id="orderBtn" style="display:none" onclick="placeOrder()">Place Order</button>
+  <p class="note">This starter version creates an order message. Before taking real payments, connect a payment/order service.</p>
+</section>
+</main>
+
+<script>
+/* =========================
+   SHOP SETTINGS
+   Change these to match your shop.
+   Stock numbers are controlled here.
+   ========================= */
+const inventory = {
+  colors: {
+    "Black": 20,
+    "White": 15,
+    "Red": 8,
+    "Blue": 0,
+    "Green": 5,
+    "Purple": 3
+  },
+  finishes: {
+    "Smooth": 1.00,
+    "Textured": 1.25
+  },
+  products: [
+    {name:"Custom Figure", price:10},
+    {name:"Keychain", price:4},
+    {name:"Small Decoration", price:7},
+    {name:"Custom Part", price:12}
+  ]
+};
+
+let cart = [];
+
+function renderProducts(){
+  const box=document.getElementById("products");
+  box.innerHTML="";
+  inventory.products.forEach((p,i)=>{
+    const colors=Object.entries(inventory.colors)
+      .filter(([name,qty])=>qty>0)
+      .map(([name])=>`<option>${name}</option>`).join("");
+    box.innerHTML += `
+      <div class="product">
+        <h3>${p.name}</h3>
+        <div class="price">$${p.price.toFixed(2)}</div>
+        <label>Color</label>
+        <select id="color${i}">${colors || '<option>No colors in stock</option>'}</select>
+        <label>Finish</label>
+        <select id="finish${i}">
+          <option value="Smooth">Smooth</option>
+          <option value="Textured">Textured</option>
+        </select>
+        <label>Quantity</label>
+        <input id="qty${i}" type="number" min="1" value="1">
+        <button onclick="addToCart(${i})">Add to Cart</button>
+      </div>`;
+  });
+}
+
+function addToCart(i){
+  const p=inventory.products[i];
+  const color=document.getElementById("color"+i).value;
+  const finish=document.getElementById("finish"+i).value;
+  const qty=Math.max(1,parseInt(document.getElementById("qty"+i).value)||1);
+
+  if(!color || inventory.colors[color] <= 0){
+    alert("That color is out of stock.");
+    return;
+  }
+  if(qty > inventory.colors[color]){
+    alert(`Only ${inventory.colors[color]} of ${color} are in stock.`);
+    return;
+  }
+
+  cart.push({name:p.name,color,finish,qty,price:p.price*inventory.finishes[finish]});
+  renderCart();
+}
+
+function renderCart(){
+  const box=document.getElementById("cart");
+  const totalEl=document.getElementById("total");
+  const orderBtn=document.getElementById("orderBtn");
+
+  if(!cart.length){
+    box.innerHTML='<p class="empty">Your cart is empty.</p>';
+    totalEl.textContent="";
+    orderBtn.style.display="none";
+    return;
+  }
+
+  let total=0;
+  box.innerHTML=cart.map((x,i)=>{
+    const line=x.price*x.qty; total+=line;
+    return `<div class="cart-item">
+      <b>${x.name}</b> — ${x.color}, ${x.finish} × ${x.qty}
+      <br>$${line.toFixed(2)}
+      <button onclick="removeItem(${i})">Remove</button>
+    </div>`;
+  }).join("");
+  totalEl.textContent="Total: $"+total.toFixed(2);
+  orderBtn.style.display="block";
+}
+
+function removeItem(i){cart.splice(i,1);renderCart();}
+
+function placeOrder(){
+  let text="3D PRINT ORDER%0A%0A";
+  let total=0;
+  cart.forEach(x=>{
+    total+=x.price*x.qty;
+    text+=`${encodeURIComponent(x.name)} - ${encodeURIComponent(x.color)} - ${encodeURIComponent(x.finish)} x${x.qty}%0A`;
+  });
+  text+=`%0ATotal: $${total.toFixed(2)}%0A%0AReply with your name and pickup/shipping details.`;
+
+  /* Replace this email address with your shop email. */
+  window.location.href="mailto:YOUR-EMAIL@example.com?subject=New%203D%20Print%20Order&body="+text;
+}
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
