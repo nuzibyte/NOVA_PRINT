@@ -28,6 +28,8 @@ header p{
   color:#d4d4d8;
 }
 
+/* CASH NOTICE */
+
 .cash-notice{
   max-width:950px;
   margin:18px auto 0;
@@ -42,7 +44,10 @@ header p{
   padding:16px;
   text-align:center;
   font-weight:bold;
+  line-height:1.5;
 }
+
+/* MAIN */
 
 main{
   max-width:950px;
@@ -120,9 +125,11 @@ button:hover{
 }
 
 button:disabled{
-  opacity:.6;
+  opacity:.55;
   cursor:not-allowed;
 }
+
+/* FILE DROP */
 
 .drop{
   border:2px dashed #a1a1aa;
@@ -154,9 +161,12 @@ button:disabled{
   word-break:break-word;
 }
 
+/* CART */
+
 .cart-item{
   padding:12px 0;
   border-bottom:1px solid #e4e4e7;
+  line-height:1.5;
 }
 
 .cart-item button{
@@ -171,21 +181,25 @@ button:disabled{
   margin-top:15px;
 }
 
-.note{
-  font-size:13px;
-  color:#71717a;
-}
-
 .empty{
   color:#71717a;
 }
 
+.note{
+  font-size:13px;
+  color:#71717a;
+  line-height:1.5;
+}
+
+/* STATUS */
+
 .status{
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
   display:none;
+  margin-top:15px;
+  padding:14px;
+  border-radius:10px;
   font-weight:bold;
+  line-height:1.5;
 }
 
 .status.success{
@@ -208,112 +222,116 @@ button:disabled{
 </style></head><body><header>
   <h1>NOVA PRINT</h1>
   <p>Custom 3D prints made your way.</p>
-</header><div class="cash-notice">
-  <div class="cash-box">
-    💵 CASH ONLY — NOVA PRINT currently accepts CASH payments only.
-    Online payments are not available at this time.
-  </div>
-</div><main><form id="orderForm" enctype="multipart/form-data">  <!-- PRODUCTS -->  <section class="card"><h2>🖨️ Choose a Print</h2>
+</header><!-- CASH ONLY NOTICE --><div class="cash-notice">  <div class="cash-box">💵 CASH ONLY
 
-<div class="products" id="products"></div>
+<br>
 
-  </section>  <!-- CART -->  <section class="card"><h2>🛒 Your Cart</h2>
+NOVA PRINT currently accepts CASH payments only.
+Online payments are not available at this time.
 
-<div id="cart">
-  <p class="empty">Your cart is empty.</p>
-</div>
-
-<div class="total" id="total"></div>
-
-  </section>  <!-- CUSTOMER INFORMATION -->  <section class="card"><h2>📩 Send Your Order</h2>
-
-<label for="customerName">
-  Your name
-</label>
-
-<input
-  id="customerName"
-  name="fi-sender-fullName"
-  required
-  placeholder="Your name"
->
-
-
-<label for="customerEmail">
-  Your email
-</label>
-
-<input
-  id="customerEmail"
-  type="email"
-  name="fi-sender-email"
-  required
-  placeholder="you@example.com"
->
-
-
-<label for="customerAddress">
-  Shipping / Delivery Address
-</label>
-
-<textarea
-  id="customerAddress"
-  name="fi-text-address"
-  required
-  placeholder="Street address, city, state, ZIP code"
-></textarea>
-
-
-<input
-  type="hidden"
-  id="orderNumber"
-  name="fi-text-orderNumber"
->
-
-<input
-  type="hidden"
-  id="orderSummary"
-  name="fi-text-orderSummary"
->
-
-<input
-  type="hidden"
-  id="paymentMethod"
-  name="fi-text-paymentMethod"
-  value="CASH ONLY"
->
-
-
-<button
-  type="submit"
-  id="submitButton"
->
-  📩 Send Order
-</button>
-
-<div
-  id="formStatus"
-  class="status"
-></div>
-
-<p class="note">
-  Your order information and uploaded 3D files will be sent to NOVA PRINT.
-  Payment is CASH ONLY.
+  </div></div><main><form
+  id="orderForm"
+  enctype="multipart/form-data"
+><!-- =====================================
+     PRODUCTS
+     ===================================== --><section class="card">  <h2>🖨️ Choose a Print</h2>  <div
+    class="products"
+    id="products"
+  ></div></section><!-- =====================================
+     CART
+     ===================================== --><section class="card">  <h2>🛒 Your Cart</h2>  <div id="cart"><p class="empty">
+  Your cart is empty.
 </p>
 
-  </section></form></main><!-- FORMNIT SDK --><script src="https://forminit.com/sdk/v1/forminit.js"></script><script>
+  </div>  <div
+    class="total"
+    id="total"
+  ></div></section><!-- =====================================
+     CUSTOMER INFORMATION
+     ===================================== --><section class="card">  <h2>📩 Send Your Order</h2>  <label for="customerName">
+    Your name
+  </label><input
+id="customerName"
+type="text"
+name="fi-sender-fullName"
+required
+placeholder="Your name"
+
+«»
+
+  <label for="customerEmail">
+    Your email
+  </label><input
+id="customerEmail"
+type="email"
+name="fi-sender-email"
+required
+placeholder="you@example.com"
+
+«»
+
+  <label for="customerAddress">
+    Shipping / Delivery Address
+  </label>  <textarea
+    id="customerAddress"
+    name="fi-text-shippingAddress"
+    required
+    placeholder="Street address, city, state, ZIP code"
+  ></textarea>  <!-- ORDER INFORMATION --><input
+type="hidden"
+id="orderNumber"
+name="fi-text-orderNumber"
+
+«»
+
+<input
+type="hidden"
+id="orderSummary"
+name="fi-text-orderSummary"
+
+«»
+
+<input
+type="hidden"
+name="fi-text-paymentMethod"
+value="CASH ONLY"
+
+«»
+
+  <!-- SUBMIT --><button
+type="submit"
+id="submitButton"
+
+«»
+
+📩 Send Order
+
+  </button>  <div
+    id="formStatus"
+    class="status"
+  ></div>  <p class="note">Your order information and uploaded 3D files
+will be sent to NOVA PRINT.
+
+<br><br>
+
+💵 Payment is CASH ONLY.
+
+  </p></section></form></main><!-- =====================================
+     FORMINIT SDK
+     ===================================== --><script src="https://forminit.com/sdk/v1/forminit.js"></script><script>
 
 /* =====================================
-   NOVA PRINT / FORMNIT SETTINGS
+   FORMNIT FORM ID
    ===================================== */
 
-/*
-   IMPORTANT:
-   Replace YOUR_FORM_ID_HERE with the
-   Form ID from your Forminit dashboard.
-*/
+const FORM_ID = "m8wm0gb8vqb";
 
-const FORM_ID = "YOUR_FORM_ID_HERE";
+
+/* =====================================
+   FORMINIT
+   ===================================== */
+
+const forminit = new Forminit();
 
 
 /* =====================================
@@ -367,7 +385,7 @@ const inventory = {
 };
 
 
-let cart=[];
+let cart = [];
 
 
 /* =====================================
@@ -377,7 +395,10 @@ let cart=[];
 function createOrderNumber(){
 
   const random =
-    Math.floor(100000 + Math.random()*900000);
+    Math.floor(
+      100000 +
+      Math.random()*900000
+    );
 
   return "NP-" + random;
 
@@ -393,17 +414,24 @@ function renderProducts(){
   const box =
     document.getElementById("products");
 
-  box.innerHTML="";
+  box.innerHTML = "";
 
 
   inventory.products.forEach((p,i)=>{
 
     const colors =
-      Object.entries(inventory.colors)
 
-      .filter(([name,qty])=>qty>0)
+      Object.entries(
+        inventory.colors
+      )
 
-      .map(([name,qty])=>
+      .filter(
+        ([name,qty]) =>
+          qty > 0
+      )
+
+      .map(
+        ([name,qty]) =>
 
         `<option value="${name}">
           ${name} (${qty} available)
@@ -422,6 +450,7 @@ function renderProducts(){
           ${p.name}
         </h3>
 
+
         <div class="price">
           $${p.price.toFixed(2)}
         </div>
@@ -432,7 +461,12 @@ function renderProducts(){
         </label>
 
         <select id="color${i}">
-          ${colors || '<option>No colors in stock</option>'}
+
+          ${
+            colors ||
+            '<option>No colors in stock</option>'
+          }
+
         </select>
 
 
@@ -476,6 +510,7 @@ function renderProducts(){
       3D File (optional)
     </label>
 
+
     <div
       class="drop"
       id="drop${i}"
@@ -495,6 +530,7 @@ function renderProducts(){
       >
         No file selected
       </div>
+
 
       <input
         class="fileInput"
@@ -520,23 +556,29 @@ function renderProducts(){
 
 });
 
-inventory.products.forEach((p,i)=>{
+inventory.products.forEach(
+(p,i)=>{
 setupDrop(i);
-});
+}
+);
 
 }
 
 /* =====================================
-FILE UPLOAD
+FILE DROP
 ===================================== */
 
 function setupDrop(i){
 
 const drop =
-document.getElementById("drop"+i);
+document.getElementById(
+"drop"+i
+);
 
 const input =
-document.getElementById("file"+i);
+document.getElementById(
+"file"+i
+);
 
 drop.addEventListener(
 "click",
@@ -548,16 +590,25 @@ input.click();
 drop.addEventListener(
 "dragover",
 e=>{
-e.preventDefault();
-drop.classList.add("drag");
+
+  e.preventDefault();
+
+  drop.classList.add("drag");
+
 }
+
 );
 
 drop.addEventListener(
 "dragleave",
 ()=>{
-drop.classList.remove("drag");
+
+  drop.classList.remove(
+    "drag"
+  );
+
 }
+
 );
 
 drop.addEventListener(
@@ -566,17 +617,27 @@ e=>{
 
   e.preventDefault();
 
-  drop.classList.remove("drag");
+  drop.classList.remove(
+    "drag"
+  );
 
-  if(e.dataTransfer.files.length){
 
-    const dt = new DataTransfer();
+  if(
+    e.dataTransfer.files.length
+  ){
+
+    const dt =
+      new DataTransfer();
+
 
     dt.items.add(
       e.dataTransfer.files[0]
     );
 
-    input.files = dt.files;
+
+    input.files =
+      dt.files;
+
 
     showFile(i);
 
@@ -601,8 +662,13 @@ SHOW FILE NAME
 
 function showFile(i){
 
+const input =
+document.getElementById(
+"file"+i
+);
+
 const file =
-document.getElementById("file"+i).files[0];
+input.files[0];
 
 document.getElementById(
 "fileName"+i
@@ -610,7 +676,11 @@ document.getElementById(
 
 file
 
-  ? `${file.name} (${(file.size/1024/1024).toFixed(2)} MB)`
+  ? `${file.name} (${(
+      file.size /
+      1024 /
+      1024
+    ).toFixed(2)} MB)`
 
   : "No file selected";
 
@@ -644,7 +714,9 @@ const qty =
 Math.max(
 1,
 parseInt(
-document.getElementById("qty"+i).value
+document.getElementById(
+"qty"+i
+).value
 ) || 1
 );
 
@@ -652,6 +724,8 @@ const file =
 document.getElementById(
 "file"+i
 ).files[0] || null;
+
+/* CHECK COLOR */
 
 if(
 !color ||
@@ -666,6 +740,8 @@ return;
 
 }
 
+/* CHECK STOCK */
+
 if(
 qty >
 inventory.colors[color]
@@ -679,24 +755,30 @@ return;
 
 }
 
+/* CHECK DESCRIPTION */
+
 if(!description){
 
 alert(
   "Please describe how you want this item made."
 );
 
+
 document.getElementById(
   "desc"+i
 ).focus();
+
 
 return;
 
 }
 
+/* CHECK FILE SIZE */
+
 if(
 file &&
 file.size >
-2510241024
+25 * 1024 * 1024
 ){
 
 alert(
@@ -723,10 +805,14 @@ qty,
 
 price:
   p.price *
-  inventory.finishes[finish],
+  inventory.finishes[
+    finish
+  ],
 
 fileName:
-  file ? file.name : ""
+  file
+    ? file.name
+    : ""
 
 });
 
@@ -740,8 +826,9 @@ ESCAPE HTML
 
 function escapeHtml(s){
 
-return s.replace(
+return String(s).replace(
 /[&<>"']/g,
+
 c=>({
 
   "&":"&amp;",
@@ -763,30 +850,36 @@ CART DISPLAY
 function renderCart(){
 
 const box =
-document.getElementById("cart");
+document.getElementById(
+"cart"
+);
 
 const totalEl =
-document.getElementById("total");
+document.getElementById(
+"total"
+);
 
 if(!cart.length){
 
 box.innerHTML =
   '<p class="empty">Your cart is empty.</p>';
 
-totalEl.textContent="";
+totalEl.textContent = "";
 
 return;
 
 }
 
-let total=0;
+let total = 0;
 
 box.innerHTML =
 
 cart.map((x,i)=>{
 
   const line =
-    x.price*x.qty;
+    x.price *
+    x.qty;
+
 
   total += line;
 
@@ -807,20 +900,29 @@ cart.map((x,i)=>{
       <br>
 
       📝
-      ${escapeHtml(x.description)}
+      ${escapeHtml(
+        x.description
+      )}
+
 
       ${
         x.fileName
 
-          ? `<br>📎 ${escapeHtml(x.fileName)}`
+          ? `<br>📎 ${escapeHtml(
+              x.fileName
+            )}`
 
           : ""
       }
+
 
       <br>
 
       💵
       $${line.toFixed(2)}
+
+
+      <br>
 
       <button
         type="button"
@@ -836,7 +938,8 @@ cart.map((x,i)=>{
 }).join("");
 
 totalEl.textContent =
-"Total: $" + total.toFixed(2);
+"Total: $" +
+total.toFixed(2);
 
 }
 
@@ -856,13 +959,17 @@ renderCart();
 BUILD ORDER SUMMARY
 ===================================== */
 
-function buildOrderSummary(orderNumber){
+function buildOrderSummary(
+orderNumber
+){
 
 let summary =
 "NOVA PRINT ORDER\n";
 
 summary +=
-"Order Number: ${orderNumber}\n";
+"Order Number: " +
+orderNumber +
+"\n";
 
 summary +=
 "Payment: CASH ONLY\n\n";
@@ -870,64 +977,94 @@ summary +=
 cart.forEach((x,n)=>{
 
 summary +=
-  `ITEM ${n+1}\n`;
+  "ITEM " +
+  (n+1) +
+  "\n";
+
 
 summary +=
-  `Product: ${x.name}\n`;
+  "Product: " +
+  x.name +
+  "\n";
+
 
 summary +=
-  `Color: ${x.color}\n`;
+  "Color: " +
+  x.color +
+  "\n";
+
 
 summary +=
-  `Finish: ${x.finish}\n`;
+  "Finish: " +
+  x.finish +
+  "\n";
+
 
 summary +=
-  `Quantity: ${x.qty}\n`;
+  "Quantity: " +
+  x.qty +
+  "\n";
+
 
 summary +=
-  `How they want it: ${x.description}\n`;
+  "How they want it: " +
+  x.description +
+  "\n";
+
 
 summary +=
-  `3D File: ${
-    x.fileName || "No file"
-  }\n`;
+  "3D File: " +
+  (
+    x.fileName ||
+    "No file"
+  ) +
+  "\n";
+
 
 summary +=
-  `Price: $${(
-    x.price*x.qty
-  ).toFixed(2)}\n\n`;
+  "Price: $" +
+  (
+    x.price *
+    x.qty
+  ).toFixed(2) +
+  "\n\n";
 
 });
 
 const total =
 cart.reduce(
 (sum,x)=>
-sum + x.price*x.qty,
-0
+sum +
+x.price *
+x.qty,
+
+  0
 );
 
 summary +=
-"TOTAL: $${total.toFixed(2)}\n";
+"TOTAL: $" +
+total.toFixed(2);
 
 return summary;
 
 }
 
 /* =====================================
-FORMNIT SUBMISSION
+FORM SUBMISSION
 ===================================== */
 
-const forminit =
-new Forminit();
-
 document
-.getElementById("orderForm")
+.getElementById(
+"orderForm"
+)
 .addEventListener(
 "submit",
 async function(e){
 
 e.preventDefault();
 
+
+/* CHECK CART */
 
 if(!cart.length){
 
@@ -940,28 +1077,22 @@ if(!cart.length){
 }
 
 
-if(
-  !FORM_ID ||
-  FORM_ID === "m8wm0gb8vqb"
-){
-
-  alert(
-    "The Forminit Form ID has not been added yet."
+const form =
+  document.getElementById(
+    "orderForm"
   );
 
-  return;
-
-}
-
-
-const form =
-  document.getElementById("orderForm");
 
 const button =
-  document.getElementById("submitButton");
+  document.getElementById(
+    "submitButton"
+  );
+
 
 const status =
-  document.getElementById("formStatus");
+  document.getElementById(
+    "formStatus"
+  );
 
 
 /* CREATE ORDER NUMBER */
@@ -976,65 +1107,86 @@ document.getElementById(
   orderNumber;
 
 
-/* BUILD ORDER SUMMARY */
+/* CREATE SUMMARY */
 
 document.getElementById(
   "orderSummary"
 ).value =
-  buildOrderSummary(orderNumber);
+  buildOrderSummary(
+    orderNumber
+  );
 
 
-/* SHOW SENDING */
+/* SHOW LOADING */
 
-button.disabled=true;
+button.disabled = true;
 
 button.textContent =
   "Sending Order...";
 
+
 status.className =
   "status loading";
 
+
 status.textContent =
-  "Sending your order to NOVA PRINT...";
+  "📤 Sending your order to NOVA PRINT...";
 
 
 try{
 
   /*
-    Forminit uses FormData so the
-    customer information AND files
-    are submitted together.
+    IMPORTANT:
+    FormData includes the customer
+    information AND the uploaded
+    3D files.
   */
 
   const formData =
     new FormData(form);
 
 
-  const {
-    data,
-    error
-  } =
+  const result =
     await forminit.submit(
       FORM_ID,
       formData
     );
 
 
+  const data =
+    result.data;
+
+  const error =
+    result.error;
+
+
+  /* ERROR */
+
   if(error){
 
-    console.error(error);
+    console.error(
+      "Forminit error:",
+      error
+    );
+
 
     status.className =
       "status error";
 
+
     status.textContent =
       "❌ Order could not be sent: " +
-      error.message;
+      (
+        error.message ||
+        "Unknown Forminit error."
+      );
 
-    button.disabled=false;
+
+    button.disabled = false;
 
     button.textContent =
       "📩 Send Order";
+
 
     return;
 
@@ -1046,42 +1198,70 @@ try{
   status.className =
     "status success";
 
+
   status.textContent =
-    `✅ Order sent successfully! Your order number is ${orderNumber}.`;
+    "✅ Order sent successfully! " +
+    "Order number: " +
+    orderNumber;
+
 
   alert(
-    `Your NOVA PRINT order was sent successfully!\n\nOrder Number: ${orderNumber}\n\nRemember: payment is CASH ONLY.`
+    "Your NOVA PRINT order was sent successfully!\n\n" +
+    "Order Number: " +
+    orderNumber +
+    "\n\n" +
+    "Payment: CASH ONLY"
   );
 
 
-  /*
-    Clear the form after successful
-    submission.
-  */
+  /* RESET */
 
   form.reset();
 
-  cart=[];
+  cart = [];
 
   renderProducts();
 
   renderCart();
 
 
+  /*
+    If Forminit provides a
+    submission ID, log it.
+  */
+
+  if(
+    data &&
+    data.hashId
+  ){
+
+    console.log(
+      "Forminit submission ID:",
+      data.hashId
+    );
+
+  }
+
 }catch(error){
 
-  console.error(error);
+  console.error(
+    "Submission error:",
+    error
+  );
+
 
   status.className =
     "status error";
 
+
   status.textContent =
     "❌ Something went wrong while sending the order. Please try again.";
+
 
 }
 
 
-button.disabled=false;
+button.disabled = false;
 
 button.textContent =
   "📩 Send Order";
