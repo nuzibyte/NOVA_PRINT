@@ -1,10 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>NOVA PRINT TEST</title>
-</head>
-<body style="background:black;color:white;text-align:center;font-family:Arial;padding:50px;">
-  <h1>🚀 NOVA PRINT IS WORKING!</h1>
-  <p>If you can see this, GitHub Pages is working.</p>
-</body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NOVA PRINT — Custom 3D Prints</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top, #10243b 0%, #05080d 42%, #020304 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER / LOGO
+========================= */
+
+header {
+    text-align: center;
+    padding: 30px 15px 20px;
+}
+
+.logo {
+    width: 190px;
+    height: 190px;
+    margin: auto;
+    border-radius: 50%;
+    border: 5px solid #159cff;
+    box-shadow:
+        0 0 20px #159cff,
+        inset 0 0 25px rgba(21,156,255,0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle, #152333 0%, #05080c 70%);
+    position: relative;
+}
+
+.logo-cube {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #48baff, #0876d1);
+    transform: rotate(30deg) skew(-8deg);
+    box-shadow:
+        8px 8px 0 #075a9f,
+        0 0 15px rgba(21,156,255,.7);
+    margin-bottom: 12px;
+}
+
+.logo-nova {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+
+.logo-print {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    color: #159cff;
+    margin-top: 5px;
+}
+
+.tagline {
+    margin-top: 18px;
+    color: #9fcff1;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    width: min(950px, 94%);
+    margin: auto;
+}
+
+.card {
+    background: rgba(8, 14, 22, 0.94);
+    border: 1px solid rgba(21,156,255,.35);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.35);
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+h2 {
+    color: #159cff;
+    margin-bottom: 15px;
+    font-size: 21px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #9da9b5;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   CASH DISCLAIMER
+========================= */
+
+.cash-warning {
+    border: 2px solid #ffbd32;
+    background: rgba(255,189,50,.09);
+    color: #ffe0a0;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.cash-warning span {
+    color: #fff;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.product {
+    border: 2px solid #253442;
+    background: #0b121a;
+    border-radius: 14px;
+    padding: 17px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.product:hover {
+    border-color: #159cff;
+    transform: translateY(-2px);
+}
+
+.product.selected {
+    border-color: #159cff;
+    background: rgba(21,156,255,.12);
+    box-shadow: 0 0 15px rgba(21,156,255,.2);
+}
+
+.product input {
+    display: none;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-price {
+    color: #4cb6ff;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #dce9f4;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #304252;
+    border-radius: 10px;
+    background: #080d13;
+    color: white;
